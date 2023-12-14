@@ -17,6 +17,14 @@ const WorkoutForm = () => {
         }
     })
     const json = await response.json()
+    if(!response.ok)setError(json.mssg)//depns on the backend
+    if(response.ok){
+        setError(null)
+        console.log("new workout added",json)
+        setLoad('')
+        setTitle('')
+        setReps('')
+    }
   }
 
   return (
