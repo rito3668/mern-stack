@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useWorkoutContext } from '../hooks/useWorkoutsContext'
 
 const WorkoutForm = () => {
+  const {dispatch} = useWorkoutContext()
   const [title, setTitle] = useState('')
   const [load, setLoad] = useState('')
   const [reps, setReps] = useState('')
@@ -17,6 +19,7 @@ const WorkoutForm = () => {
         }
     })
     const json = await response.json()
+    
     if(!response.ok)setError(json.mssg)//depns on the backend
     if(response.ok){
         setError(null)
@@ -24,6 +27,7 @@ const WorkoutForm = () => {
         setLoad('')
         setTitle('')
         setReps('')
+        dispatch({type:'CREATE_WORKOUT',payload:json})
     }
   }
 
