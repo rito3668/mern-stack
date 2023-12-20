@@ -97,3 +97,13 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+input.error {
+  border: 1px solid var(--error);
+}
+.trash_can{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+
+}

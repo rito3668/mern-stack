@@ -1,6 +1,7 @@
 import React from 'react'
 import { useWorkoutContext } from '../hooks/useWorkoutsContext'
-
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import del from '../assets/delete.svg'
 export default function WorkoutDetails({workout}) {
     const {dispatch} = useWorkoutContext()
     const handleDelete = async()=>{
@@ -17,8 +18,8 @@ export default function WorkoutDetails({workout}) {
         <h4>{workout.title}</h4>
         <p><strong>{workout.load}</strong></p>
         <p><strong>Reps: </strong>{workout.reps}</p>
-        <p>{workout.createdAt}</p>
-        <button onClick={handleDelete}>X</button>
+        <p>{formatDistanceToNow(new Date(workout.createdAt),{addSuffix:true})}</p>
+        <img src={del} alt='delete' className='trash_can' onClick={handleDelete} />
     </div>
   )
 }
