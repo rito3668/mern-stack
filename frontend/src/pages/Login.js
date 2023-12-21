@@ -26,6 +26,7 @@ export default function Login() {
         />
         {!loading && <button>Login</button>}
         {loading && <button disabled>loading...</button>}
+        {error&&<div className='error'>{error}</div>}
     </form>
   )
 }
