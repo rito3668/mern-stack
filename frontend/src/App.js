@@ -1,10 +1,12 @@
 
-import {BrowserRouter,Switch,Route} from 'react-router-dom'
+import {BrowserRouter,Switch,Route,Redirect} from 'react-router-dom'
 import Home from './pages/Home'
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import { useAuthContext } from './hooks/useAuthContext';
 function App() {
+  const {user} = useAuthContext()
   return (
     <div className="App">
 
@@ -14,13 +16,16 @@ function App() {
         
         <Switch>
           <Route exact path='/'>
-            <Home/>
+            {user && <Home/>}
+            {!user && <Redirect to='/login'/>}
           </Route>
           <Route path='/login'>
-            <Login/>
+            {!user && <Login/>}
+            {user && <Redirect to='/'/>}
           </Route>
           <Route path='/signup'>
-            <Signup/>
+          {!user && <Signup/>}
+            {user && <Redirect to='/'/>}
           </Route>
         </Switch>
       </div>
